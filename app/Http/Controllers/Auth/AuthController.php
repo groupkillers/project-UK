@@ -11,6 +11,7 @@ use App\Models\Register;
 class AuthController extends Controller
 {
     public function register (Request $request) {
+
         $request->validate([
             'role' => 'required',
             'username' => 'required',
@@ -22,6 +23,13 @@ class AuthController extends Controller
             'user_password' => Hash::make($request->password),
             'user_roal' => $request->role,
         ]);
-        
+        return $user;
+    }
+
+    public function login(Request $request) {
+        $request->validate([
+            'username' => 'required',
+            'password' => 'required|min:6|max:32|string',
+        ]);
     }
 }
