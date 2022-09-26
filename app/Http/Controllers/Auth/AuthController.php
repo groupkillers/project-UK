@@ -31,5 +31,33 @@ class AuthController extends Controller
             'username' => 'required',
             'password' => 'required|min:6|max:32|string',
         ]);
+
+        $username = $request->username;
+
+        $getDetails = Register::whereUserName($username)
+            ->first();
+        
+        if(empty($getDetails)) {
+            return Response()
+                ->json([
+                    'errors' => ['invalidfdhggftdh password or user name']
+                ], 422);
+        }
+       
+        if(!Hash::check($request->password,$getDetails->user_password)) {
+            return Response() 
+                ->json([
+                    'errors' => ['invalid password or user name']
+                ], 422);
+        }else {
+            if(
+                $getDetails
+                    ->user_roal == 'admin'
+            ) {
+                return 'go admin page';
+            } else {
+                return 'go staff page';
+            }
+        }
     }
 }
