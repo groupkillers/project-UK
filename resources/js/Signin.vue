@@ -1,6 +1,8 @@
 <template>
 	<div>
-		<router-link to="/signin">Signin</router-link>
+		<router-link to="/signup">Signup</router-link>
+		<!--<router-link to="/dashboard">dashboard</router-link>-->
+        <h5>Signin</h5>
 		<form 
 			@submit.prevent="userRegister"
 			action=""
@@ -32,10 +34,8 @@
 </template>
 
 <script>
-	import fetchData from "./Fetch.js"
-
 	export default {
-		name:'Register',
+		name:'Singnin',
 		data() {
 			return {
 				user: {
@@ -45,13 +45,9 @@
 		},
 		methods: {
 			userRegister() {
-				fetchData( 'http://127.0.0.1:8000/api/registerUser', 'POST', this.user)
+				
 			}
-		},
-		success: () => {
-			
 		}
-		
 	}
 </script>
 
