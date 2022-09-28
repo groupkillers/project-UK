@@ -48,7 +48,7 @@
 						<button 
 							type="submit"
 							class="btn btn-primary"
-						>Click</button>
+						>Signup</button>
 					</form>
 				</div>
 			</div>
