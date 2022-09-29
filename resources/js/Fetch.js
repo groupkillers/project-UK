@@ -1,5 +1,3 @@
-
-
 const fetchData = ( url, method, deatils ) => {
 	fetch(url, {
 		method: method, // or 'PUT'

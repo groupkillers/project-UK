@@ -36,16 +36,16 @@ class AuthController extends Controller
 
         $getDetails = Register::whereUserName($username)
             ->first();
-        
+
         if(empty($getDetails)) {
             return Response()
                 ->json([
-                    'errors' => ['invalidfdhggftdh password or user name']
+                    'errors' => ['something wrong!']
                 ], 422);
         }
-       
+
         if(!Hash::check($request->password,$getDetails->user_password)) {
-            return Response() 
+            return Response()
                 ->json([
                     'errors' => ['invalid password or user name']
                 ], 422);
