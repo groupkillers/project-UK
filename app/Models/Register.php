@@ -17,5 +17,5 @@ class Register extends Model
         'user_name',
         'user_password',
         'user_roal'
-     ];
+    ];
 }
