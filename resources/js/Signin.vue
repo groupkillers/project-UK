@@ -1,7 +1,7 @@
 <template>
 	<div>
-		<router-link to="/signup">Signup</router-link>
-		<!--<router-link to="/dashboard">dashboard</router-link>-->
+		<router-link to="/signup">Signup</router-link><br>
+		<router-link to="/user">User</router-link>
         <h5>Signin</h5>
 		<form 
 			@submit.prevent="userRegister"
