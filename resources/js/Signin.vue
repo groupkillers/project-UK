@@ -46,8 +46,15 @@
 		methods: {
 			userRegister() {
 				
+			},
+			success: () => {
+				this.$router.push({
+					path: '/signin'
+				})
 			}
 		}
 	}
 </script>
+
+
 

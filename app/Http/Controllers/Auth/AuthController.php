@@ -11,19 +11,21 @@ use App\Models\Register;
 class AuthController extends Controller
 {
     public function register (Request $request) {
-
+			
         $request->validate([
             'role' => 'required',
             'username' => 'required',
-            'password' => 'required|min:6|max:32|string',
+            'password' => 'required|min:6',
         ]);
-
+        
         $user = Register::create([
             'user_name' => $request->username,
             'user_password' => Hash::make($request->password),
             'user_roal' => $request->role,
         ]);
-        return $user;
+		
+        return Response()
+            ->json($user);
     }
 
     public function login(Request $request) {

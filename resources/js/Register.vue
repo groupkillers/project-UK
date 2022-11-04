@@ -43,6 +43,7 @@
 								<option value="staff">staff</option>
 							</select>
 						</div>
+						{}
 					 <router-link to="/signin">Signin</router-link>
 						<br/>
 						<button 
@@ -60,21 +61,26 @@
 	import fetchData from "./Fetch.js"
 
 	export default {
-		name:'Register',
-		data() {
+		name: 'Register',
+		data () {
 			return {
-				user: {
-					role: 'admin'
-				}
+				user: {}
 			}
 		},
 		methods: {
 			userRegister() {
-				fetchData( 'http://127.0.0.1:8000/api/registerUser', 'POST', this.user)
+				fetchData({
+					url: '/registerUser',
+					method: 'POST',
+					body: this.user,
+					success: (res) => {
+						console.log(res)
+					},
+					error: (e) => {
+						console.log(e)
+					}
+				})
 			}
-		},
-		success: () => {
-			
 		}	
 	}
 </script>

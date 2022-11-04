@@ -25,7 +25,7 @@ Route::post('loginUser', [App\Http\Controllers\Auth\AuthController::class, 'logi
 
 
 //AML Site Crud Functions Routes
-Route::get('/Aml',[AmlController::class,'ViewAml']); //View
+Route::get('/aml',[AmlController::class,'ViewAml']); //View
 Route::post('Aml',[AmlController::class,'createAml']); //Insert
 Route::put('Aml/{id}',[AmlController::class,'updateAml']); //Update
 Route::delete('Aml/{id}',[AmlController::class,'deleteAml']); //Delete
