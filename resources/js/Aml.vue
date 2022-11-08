@@ -33,58 +33,50 @@
       </button>
       <span 
 				class="modal__title"
-			>
-				Update AML
-			</span>
+			>Update AML</span>
+			<hr>
       <div 
 				class="modal__content"
 			>
         <form 
-						@submit.prevent="userRegister"
-						action=""
-					>
-						<label 
-							for="username" 
-							class="form-label"
-						>Username</label>
+					@submit.prevent="userRegister"
+					action=""
+				>
+				<div 
+					class="row mb-3">
+						<div 
+							class="col-md-4">
+							<label 
+								for="username" 
+								class="form-label"
+							>passport proff expiry date</label>
 							<input 
-								type="text" 
+								type="date" 
 								class="form-control"
 								placeholder="Enter username"
 								id="username"
 							>
+						</div>
+				</div>
+					
+				<div class="row mb-3">
+					<div class="col-md-4">
 						<label 
 							for="password"
 							class="form-label"
-						>password</label>
+						>Address Proff expiry date</label>
 						<input 
-							type="password"
+							type="date"
 							class="form-control" 
-						
 							id="password"
 						>
-						<br />
-						<div class="input-group mb-3">
-							<label 
-								class="input-group-text" 
-								for="inputGroupSelect01"
-							>Role</label>
-							<select 
-								class="form-select"
-								
-							>
-								<option value="admin">Admin</option>
-								<option value="staff">staff</option>
-							</select>
-						</div>
-						{}
-					 <router-link to="/signin">Signin</router-link>
-						<br/>
-						<button 
-							type="submit"
-							class="btn btn-primary"
-						>Signup</button>
-					</form>
+					</div>
+				</div>
+					<button 
+						type="submit"
+						class="btn btn-warning"
+					>update AML</button>
+				</form>
       </div>
     </vue-final-modal>
 	</div>
@@ -142,7 +134,8 @@
   border: 1px solid #e2e8f0;
   border-radius: 0.25rem;
   background: rgb(22, 18, 18);
-	width:600px;
+	width:700px;
+	height:400px;
 	color:white;
 }
 .modal__title {
