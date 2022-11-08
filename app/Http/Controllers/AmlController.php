@@ -48,33 +48,26 @@ class AmlController extends Controller
         }
     }
 
-    public function updateAml(Request $Request) {
-        $validateAmls=array(
-            "passport_proff"=>"required",
-            "passport_expire_date"=>"required",
-            "address_proff"=>"required",
-            "address_expire_date"=>"required"
-        );
+    public function updateAml(Request $request, $id) {
+        $request->validate([
+            "passport_proff" => "required",
+            "passport_expire_date" => "required",
+            "address_proff" => "required",
+            "address_expire_date" => "required"
+        ]);
 
-        $validator=Validator::make($Request->all(),$validateAmls);
+        Aml::where('id', $id)
+            ->update([
+                'passport_proff' => $request->passport_proff,
+                'passport_expire_date' => $request->passport_expire_date,
+                'address_proff' => $request->address_proff,
+                'address_expire_date' => $request->address_expire_date
+            ]);
 
-        if($validator->fails()) {
-            return response()->json($validator->errors(),401);
-        } else {
-            $result = DB::table('amls')
-                ->where('id', 1)
-                ->update([
-                    'passport_proff' => $Request->passport_proff,
-                    'passport_expire_date' =>$Request->passport_expire_date,
-                    'address_proff' => $Request->address_proff,
-                    'address_expire_date' => $Request->address_expire_date
-                ]);
-            if($result) {
-                return ["Result" => "Data Updated Successfully !"];
-            } else {
-                return ["Result" => "Please Try Again !"];
-            }
-        }
+        return Response()
+            ->json([
+                'message' => ['user update success..!']
+            ], 200);
     }
 
     public function deleteAml($client_ID) {

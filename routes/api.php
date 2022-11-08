@@ -19,14 +19,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('registerUser', [App\Http\Controllers\Auth\AuthController::class, 'register']);
-Route::post('loginUser', [App\Http\Controllers\Auth\AuthController::class, 'login']);
+Route::post('register-user', [App\Http\Controllers\Auth\AuthController::class, 'register']);
+Route::post('login-user', [App\Http\Controllers\Auth\AuthController::class, 'login']);
 
 
 
 //AML Site Crud Functions Routes
 Route::get('/aml',[AmlController::class,'ViewAml']); //View
-Route::post('Aml',[AmlController::class,'createAml']); //Insert
-Route::put('Aml/{id}',[AmlController::class,'updateAml']); //Update
-Route::delete('Aml/{id}',[AmlController::class,'deleteAml']); //Delete
-Route::get('Aml/{client_ID}',[AmlController::class,'searchAml']); //Search
+Route::post('aml',[AmlController::class,'createAml']); //Insert
+Route::put('aml/{id}',[AmlController::class,'updateAml']); //Update
+Route::delete('aml/{id}',[AmlController::class,'deleteAml']); //Delete
+Route::get('aml/{client_ID}',[AmlController::class,'searchAml']); //Search
