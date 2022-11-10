@@ -10,21 +10,48 @@ use App\Models\Register;
 
 class AuthController extends Controller
 {
-    public function register (Request $request) {	
+    public function register (Request $request) {
+       
         $request->validate([
             'role' => 'required',
             'username' => 'required',
             'password' => 'required|min:6',
+            'firstname' => 'required',
+            'lastname' => 'required',
+            'email' => 'required',
+            'contactnumber' => 'required',
+            'birthdate' => 'required',
+            'streetaddress' => 'required',
+            'addressline' => 'required',
+            'city' => 'required',
+            'state' => 'required',
+            'postal_code' => 'required',
+            'comments' => 'required',
+            'client_id' => 'required'
         ]);
-        
+
         $user = Register::create([
             'user_name' => $request->username,
             'user_password' => Hash::make($request->password),
-            'user_roal' => $request->role,
+            'user_role' => $request->role,
+            'client_id' => $request->client_id,
+            'firstname' => $request->firstname, 
+            'lastname' => $request->lastname,
+            'email' => $request->email,
+            'contact_number' => $request->contactnumber,
+            'birthdate' => $request->birthdate,
+            'street_address' => $request->streetaddress,
+            'address_line_2' => $request->addressline,
+            'city' => $request->city,
+            'state' => $request->state,
+            'postal_code' => $request->postal_code,
+            'comments' => $request->comments
         ]);
-		
+
         return Response()
-            ->json($user);
+            ->json([
+                'message' => ['user create success..!']
+                ], 422);
     }
 
     public function login(Request $request) {
@@ -53,7 +80,7 @@ class AuthController extends Controller
         }else {
             if(
                 $getDetails
-                    ->user_roal == 'admin'
+                    ->user_role == 1
             ) {
                 return 'go admin page';
             } else {

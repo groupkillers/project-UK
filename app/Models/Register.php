@@ -14,8 +14,20 @@ class Register extends Model
 	protected $primaryKey = 'user';
 
     protected $fillable = [
+        'client_id',
+        'firstname',
+        'lastname',
         'user_name',
+        'email',
+        'contact_number',
+        'birthdate',
+        'street_address',
+        'address_line_2',
+        'city',
+        'state',
+        'postal_code',
         'user_password',
-        'user_roal'
+        'user_role',
+        'comments'
     ];
 }
