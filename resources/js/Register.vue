@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<!-- <div>
 		<div class="container">
 			<div class="card" id="contant">
 				<div class="card-body">
@@ -136,6 +136,127 @@
 							class="btn btn-primary"
 						>Signup</button>
 					</form>
+				</div>
+			</div>
+		</div>
+	</div> -->
+	<div>
+		<div class="d-flex justify-content-center">
+			<div class="card mt-5 mb-5 w-70">
+				<div class="card-header">
+					<h3>Register Your Business</h3>
+					<p>Please provide all required details to register your business with us</p>
+				</div>
+				<div class="card-body">
+					<div class="row">
+						<h6 class="p-2">Business Owner</h6>
+					</div>
+
+					<div class="row">
+						<div class="col">
+							<input type="password" class="form-control" id="password">
+							<label class="form-label" for="inputGroupSelect01">First Name</label>
+						</div>
+						<div class="col">
+							<input type="password" class="form-control" id="password">
+							<label class="form-label" for="inputGroupSelect01">Last Name</label>
+						</div>
+					</div>
+
+					<div class="row mt-3">
+						<div class="col">
+							<div class="row">
+								<h6 class="p-2">User Name</h6>
+							</div>
+							<input type="text" class="form-control" id="password">
+						</div>
+						<div class="col">
+						</div>
+					</div>
+
+					<div class="row mt-3">
+						<div class="col">
+							<div class="row">
+								<h6 class="p-2">Contact Number</h6>
+							</div>
+							<input type="number" class="form-control" id="password">
+						</div>
+						<div class="col">
+						</div>
+					</div>
+
+					<div class="row mt-3">
+						<div class="row">
+							<h6 class="p-2">E-mail</h6>
+						</div>
+						<div class="col">
+							<input type="email" class="form-control" id="password">
+							<label class="form-label" for="inputGroupSelect01">example@example.com</label>
+						</div>
+						<div class="col">
+						</div>
+					</div>
+
+					<div class="row mt-3">
+						<div class="row">
+							<h6 class="p-2">Address</h6>
+						</div>
+						<div class="col">
+							<input type="text" class="form-control" id="password">
+							<label class="form-label" for="inputGroupSelect01">Street Address</label>
+						</div>
+					</div>
+
+					<div class="row mt-3">
+						<div class="col">
+							<input type="text" class="form-control" id="password">
+							<label class="form-label" for="inputGroupSelect01">Street Address Line 2</label>
+						</div>
+					</div>
+
+					<div class="row mt-3">
+						<div class="col">
+							<input type="text" class="form-control" id="password">
+							<label class="form-label" for="inputGroupSelect01">City</label>
+						</div>
+						<div class="col">
+							<input type="text" class="form-control" id="password">
+							<label class="form-label" for="inputGroupSelect01">State / Province</label>
+						</div>
+					</div>
+					
+					<div class="row mt-3">
+						<div class="col">
+							<input type="text" class="form-control" id="password">
+							<label class="form-label" for="inputGroupSelect01">Postal / Zip Code</label>
+						</div>
+					</div>
+
+					<div class="row mt-3">
+						<div class="col">
+							<div class="row">
+								<h6 class="p-2">Role</h6>
+							</div>
+							<select class="form-select" >
+								<option value="admin">Admin</option>
+								<option value="staff">staff</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="row mt-3">
+						<div class="col">
+							<div class="row">
+								<h6 class="p-2">Comments</h6>
+							</div>
+							<textarea class="form-control" aria-label="With textarea"></textarea>
+						</div>
+					</div>
+				</div>
+				<div class="card-footer">
+					<div class="d-flex justify-content-center">
+						<button type="submit" class="btn btn-success">Sumit Registration</button>
+					</div>
 				</div>
 			</div>
 		</div>
