@@ -19,16 +19,17 @@ const routes = [
   { path: '/', component: Home },
   { path: '/signup', component: Signup },
   { path: '/signin', component: Signin },
+  { path: '/calander', component: Calander},
   {
     path: '/',
     component: Dashboard,
     children: [
       { path: 'dashboard', component: UserDeatils },
       { path: 'user', component: UserDeatils },
-      { path: 'aml', component: Aml },
-      { path: 'calander', component: Calander}
+      { path: 'aml', component: Aml }
     ]
-  },
+  }
+  
 ]
 
 const router = createRouter({

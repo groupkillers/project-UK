@@ -1,178 +1,173 @@
+<script lang='ts'>
+import { defineComponent } from 'vue'
+import '@fullcalendar/core/vdom' // solve problem with Vite
+import FullCalendar, { CalendarOptions, EventApi, DateSelectArg, EventClickArg } from '@fullcalendar/vue3'
+import dayGridPlugin from '@fullcalendar/daygrid'
+import timeGridPlugin from '@fullcalendar/timegrid'
+import interactionPlugin from '@fullcalendar/interaction'
+import { INITIAL_EVENTS, createEventId } from './event-utils'
+
+const Demo = defineComponent({
+  components: {
+    FullCalendar,
+  },
+  data() {
+    return {
+      calendarOptions: {
+        plugins: [
+          dayGridPlugin,
+          timeGridPlugin,
+          interactionPlugin // needed for dateClick
+        ],
+        headerToolbar: {
+          left: 'prev,next today',
+          center: 'title',
+          right: 'dayGridMonth,timeGridWeek,timeGridDay'
+        },
+        initialView: 'dayGridMonth',
+        initialEvents: INITIAL_EVENTS, // alternatively, use the `events` setting to fetch from a feed
+        editable: true,
+        selectable: true,
+        selectMirror: true,
+        dayMaxEvents: true,
+        weekends: true,
+        select: this.handleDateSelect,
+        eventClick: this.handleEventClick,
+        eventsSet: this.handleEvents
+        /* you can update a remote database when these fire:
+        eventAdd:
+        eventChange:
+        eventRemove:
+        */
+      } as CalendarOptions,
+      currentEvents: [] as EventApi[],
+    }
+  },
+  methods: {
+    handleWeekendsToggle() {
+      this.calendarOptions.weekends = !this.calendarOptions.weekends // update a property
+    },
+    handleDateSelect(selectInfo: DateSelectArg) {
+      let title = prompt('Please enter a new title for your event')
+      let calendarApi = selectInfo.view.calendar
+
+      calendarApi.unselect() // clear date selection
+
+      if (title) {
+        calendarApi.addEvent({
+          id: createEventId(),
+          title,
+          start: selectInfo.startStr,
+          end: selectInfo.endStr,
+          allDay: selectInfo.allDay
+        })
+      }
+    },
+    handleEventClick(clickInfo: EventClickArg) {
+      if (confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
+        clickInfo.event.remove()
+      }
+    },
+    handleEvents(events: EventApi[]) {
+      this.currentEvents = events
+    },
+  }
+})
+export default Demo
+</script>
+
 <template>
-  <div class="text-center section">
-    <h2 class="h2">Custom Calendars</h2>
-    <p class="text-lg font-medium text-gray-600 mb-6">
-      Roll your own calendars using scoped slots
-    </p>
-    <v-calendar
-      class="custom-calendar max-w-full"
-      :masks="masks"
-      :attributes="attributes"
-      disable-page-swipe
-      is-expanded
-    >
-      <template v-slot:day-content="{ day, attributes }">
-        <div class="flex flex-col h-full z-10 overflow-hidden">
-          <span class="day-label text-sm text-gray-900">{{ day.day }}</span>
-          <div class="flex-grow overflow-y-auto overflow-x-auto">
-            <p
-              v-for="attr in attributes"
-              :key="attr.key"
-              class="text-xs leading-tight rounded-sm p-1 mt-0 mb-1"
-              :class="attr.customData.class"
-            >
-              {{ attr.customData.title }}
-            </p>
-          </div>
-        </div>
-      </template>
-    </v-calendar>
+  <div class='demo-app'>
+    <div class='demo-app-sidebar'>
+      <div class='demo-app-sidebar-section'>
+        <h2>Instructions</h2>
+        <ul>
+          <li>Select dates and you will be prompted to create a new event</li>
+          <li>Drag, drop, and resize events</li>
+          <li>Click an event to delete it</li>
+        </ul>
+      </div>
+      <div class='demo-app-sidebar-section'>
+        <label>
+          <input
+            type='checkbox'
+            :checked='calendarOptions.weekends'
+            @change='handleWeekendsToggle'
+          />
+          toggle weekends
+        </label>
+      </div>
+      <div class='demo-app-sidebar-section'>
+        <h2>All Events ({{ currentEvents.length }})</h2>
+        <ul>
+          <li v-for='event in currentEvents' :key='event.id'>
+            <b>{{ event.startStr }}</b>
+            <i>{{ event.title }}</i>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class='demo-app-main'>
+      <FullCalendar
+        class='demo-app-calendar'
+        :options='calendarOptions'
+      >
+        <template v-slot:eventContent='arg'>
+          <b>{{ arg.timeText }}</b>
+          <i>{{ arg.event.title }}</i>
+        </template>
+      </FullCalendar>
+    </div>
   </div>
 </template>
 
-<script>
-export default {
-  data() {
-    const month = new Date().getMonth();
-    const year = new Date().getFullYear();
-    return {
-      masks: {
-        weekdays: 'WWW',
-      },
-      attributes: [
-        {
-          key: 1,
-          customData: {
-            title: 'Lunch with mom.',
-            class: 'bg-red-600 text-white',
-          },
-          dates: new Date(year, month, 1),
-        },
-        {
-          key: 2,
-          customData: {
-            title: 'Take Noah to basketball practice',
-            class: 'bg-blue-500 text-white',
-          },
-          dates: new Date(year, month, 2),
-        },
-        {
-          key: 3,
-          customData: {
-            title: "Noah's basketball game.",
-            class: 'bg-blue-500 text-white',
-          },
-          dates: new Date(year, month, 5),
-        },
-        {
-          key: 4,
-          customData: {
-            title: 'Take car to the shop',
-            class: 'bg-indigo-500 text-white',
-          },
-          dates: new Date(year, month, 5),
-        },
-        {
-          key: 4,
-          customData: {
-            title: 'Meeting with new client.',
-            class: 'bg-teal-500 text-white',
-          },
-          dates: new Date(year, month, 7),
-        },
-        {
-          key: 5,
-          customData: {
-            title: "Mia's gymnastics practice.",
-            class: 'bg-pink-500 text-white',
-          },
-          dates: new Date(year, month, 11),
-        },
-        {
-          key: 6,
-          customData: {
-            title: 'Cookout with friends.',
-            class: 'bg-orange-500 text-white',
-          },
-          dates: { months: 5, ordinalWeekdays: { 2: 1 } },
-        },
-        {
-          key: 7,
-          customData: {
-            title: "Mia's gymnastics recital.",
-            class: 'bg-pink-500 text-white',
-          },
-          dates: new Date(year, month, 22),
-        },
-        {
-          key: 8,
-          customData: {
-            title: 'Visit great grandma.',
-            class: 'bg-red-600 text-white',
-          },
-          dates: new Date(year, month, 25),
-        },
-      ],
-    };
-  },
-};
-</script>
+<style lang='css'>
 
-<style lang="postcss" scoped>
-::-webkit-scrollbar {
-  width: 0px;
+h2 {
+  margin: 0;
+  font-size: 16px;
 }
 
-::-webkit-scrollbar-track {
-  display: none;
+ul {
+  margin: 0;
+  padding: 0 0 0 1.5em;
 }
 
-/deep/ .custom-calendar.vc-container {
-  --day-border: 1px solid #b8c2cc;
-  --day-border-highlight: 1px solid #b8c2cc;
-  --day-width: 90px;
-  --day-height: 90px;
-  --weekday-bg: #f8fafc;
-  --weekday-border: 1px solid #eaeaea;
-
-  border-radius: 0;
-  width: 100%;
-
-  & .vc-header {
-    background-color: #f1f5f8;
-    padding: 10px 0;
-  }
-  & .vc-weeks {
-    padding: 0;
-  }
-  & .vc-weekday {
-    background-color: var(--weekday-bg);
-    border-bottom: var(--weekday-border);
-    border-top: var(--weekday-border);
-    padding: 5px 0;
-  }
-  & .vc-day {
-    padding: 0 5px 3px 5px;
-    text-align: left;
-    height: var(--day-height);
-    min-width: var(--day-width);
-    background-color: white;
-    &.weekday-1,
-    &.weekday-7 {
-      background-color: #eff8ff;
-    }
-    &:not(.on-bottom) {
-      border-bottom: var(--day-border);
-      &.weekday-1 {
-        border-bottom: var(--day-border-highlight);
-      }
-    }
-    &:not(.on-right) {
-      border-right: var(--day-border);
-    }
-  }
-  & .vc-day-dots {
-    margin-bottom: 5px;
-  }
+li {
+  margin: 1.5em 0;
+  padding: 0;
 }
+
+b { /* used for event dates/times */
+  margin-right: 3px;
+}
+
+.demo-app {
+  display: flex;
+  min-height: 100%;
+  font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+  font-size: 14px;
+}
+
+.demo-app-sidebar {
+  width: 300px;
+  line-height: 1.5;
+  background: #eaf9ff;
+  border-right: 1px solid #d3e2e8;
+}
+
+.demo-app-sidebar-section {
+  padding: 2em;
+}
+
+.demo-app-main {
+  flex-grow: 1;
+  padding: 3em;
+}
+
+.fc { /* the calendar root */
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
 </style>

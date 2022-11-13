@@ -1,37 +1,55 @@
 <template>
-		<div>
-			<!-- <router-link to="/signup">Signup</router-link><br>
-		    <router-link to="/user">User</router-link> -->
-		<div class="container">
-			<div class="d-flex justify-content-center">
-			<div class="card w-50" id="contant">
-				<div class="card-body" >
-					<div class="card-header">
-						<h3>Signin</h3>
-					</div>
-					<br>
-					<form @submit.prevent="userRegister" action="">
+	<div>
+		<div 
+			class="container"
+		>
+			<div 
+				class="d-flex justify-content-center"
+			>
+				<div 
+					class="card w-50" 
+					id="contant"
+				>
+					<div 
+						class="card-body" 
+					>
 						<div 
-							class="row">
-							<div class="col">
+							class="card-header"
+						>
+							<h3>Signin</h3>
+						</div>
+						<br>
+						<form 
+							@submit.prevent="signinUser" 
+							action=""
+						>
+						<div 
+							class="row"
+						>
+							<div 
+								class="col"
+							>
 								<label 
 									for="usernam" 
 									class="form-label"
 								>Username</label>
-									<input 
-									  type="text" 
-										class="form-control"
-										placeholder="Enter username"
-										v-model="user.username"
-										id="username"
-										required >
+								<input 
+									type="text" 
+									class="form-control"
+									placeholder="Enter username"
+									v-model="user.username"
+									id="username"
+									required 
+								>
 							</div>
 						</div>
 						<br>
 						<div 
-							class="row">
+							class="row"
+						>
 							<div 
-								class="col">
+								class="col"
+							>
 								<label 
 									for="password"
 									class="form-label"
@@ -45,20 +63,19 @@
 								>
 							</div>
 						</div>
-						<br />
+						<br/>
 						<div 
-							class="row">
-							<label>
-									<input type="checkbox" checked="checked" name="remember"> Remember me
-              </label>
+							class="row"
+						>
+							<input type="checkbox" checked="checked" name="remember"> Remember me
 						</div>
 						<br/>
 						<button 
 							type="submit"
 							class="btn btn-primary"
 						>Signin</button>
-					</form>
-				  </div>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -70,20 +87,27 @@
 		name:'Singnin',
 		data() {
 			return {
-				user: {
-					role: 'admin'
-				}
+				user: {}
 			}
 		},
 		methods: {
-			userRegister() {
-				
-			},
-			success: () => {
-				this.$router.push({
-					path: '/signin'
+			signinUser() {
+				fetchData({
+					url: '/login-user',
+					method: 'POST',
+					body: this.user,
+					success: (res) => {
+						console.log(res)
+						// setTimeout(
+						// 	this.$router.push({
+						// 		path: '/aml'
+						// 	}),3000)
+					},
+					error: (e) => {
+						console.log(e.message)
+					}
 				})
-			}
+			},
 		}
 	}
 </script>
