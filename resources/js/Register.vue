@@ -66,6 +66,17 @@
 									class="form-label" 
 									for="lastname"
 								>Last Name</label>
+								<div
+									class="text-danger small mb-2"
+									v-if="errors.lastname"
+								>
+									<span
+										v-for="(data, index) in errors.lastname"
+										:key="index"
+									>
+										{{data}}
+									</span>
+								</div>
 							</div>
 						</div>
 
@@ -87,6 +98,17 @@
 									class="form-control" 
 									v-model="user.username"
 								>
+								<div
+									class="text-danger small mb-2"
+									v-if="errors.username"
+								>
+									<span
+										v-for="(data, index) in errors.username"
+										:key="index"
+									>
+										{{data}}
+									</span>
+								</div>
 							</div>
 							<div class="col">
 							</div>
@@ -110,6 +132,17 @@
 									class="form-control" 
 									v-model="user.contactnumber"
 								>
+								<div
+									class="text-danger small mb-2"
+									v-if="errors.contactnumber"
+								>
+									<span
+										v-for="(data, index) in errors.contactnumber"
+										:key="index"
+									>
+										{{data}}
+									</span>
+								</div>
 							</div>
 							<div class="col">
 							</div>
@@ -136,6 +169,17 @@
 									class="form-label" 
 									for="e-mail"
 								>example@example.com</label>
+								<div
+									class="text-danger small mb-2"
+									v-if="errors.email"
+								>
+									<span
+										v-for="(data, index) in errors.email"
+										:key="index"
+									>
+										{{data}}
+									</span>
+								</div>
 							</div>
 							<div class="col">
 							</div>
@@ -162,6 +206,17 @@
 									class="form-label" 
 									for="inputGroupSelect01"
 								>Street Address</label>
+								<div
+									class="text-danger small mb-2"
+									v-if="errors.streetaddress"
+								>
+									<span
+										v-for="(data, index) in errors.streetaddress"
+										:key="index"
+									>
+										{{data}}
+									</span>
+								</div>
 							</div>
 						</div>
 
@@ -180,6 +235,17 @@
 									class="form-label" 
 									for="line_2"
 								>Street Address Line 2</label>
+								<div
+									class="text-danger small mb-2"
+									v-if="errors.addressline"
+								>
+									<span
+										v-for="(data, index) in errors.addressline"
+										:key="index"
+									>
+										{{data}}
+									</span>
+								</div>
 							</div>
 						</div>
 
@@ -199,6 +265,17 @@
 									class="form-label" 
 									for="city"
 								>City</label>
+								<div
+									class="text-danger small mb-2"
+									v-if="errors.city"
+								>
+									<span
+										v-for="(data, index) in errors.city"
+										:key="index"
+									>
+										{{data}}
+									</span>
+								</div>
 							</div>
 							<div 
 								class="col"
@@ -213,6 +290,17 @@
 									class="form-label" 
 									for="State"
 								>State / Province</label>
+								<div
+									class="text-danger small mb-2"
+									v-if="errors.state"
+								>
+									<span
+										v-for="(data, index) in errors.state"
+										:key="index"
+									>
+										{{data}}
+									</span>
+								</div>
 							</div>
 						</div>
 						
@@ -232,6 +320,17 @@
 									class="form-label" 
 									for="Postal"
 								>Postal / Zip Code</label>
+								<div
+									class="text-danger small mb-2"
+									v-if="errors.postal_code"
+								>
+									<span
+										v-for="(data, index) in errors.postal_code"
+										:key="index"
+									>
+										{{data}}
+									</span>
+								</div>
 							</div>
 						</div>
 
@@ -251,6 +350,17 @@
 									class="form-control" 
 									v-model="user.birthdate"
 								>
+								<div
+									class="text-danger small mb-2"
+									v-if="errors.birthdate"
+								>
+									<span
+										v-for="(data, index) in errors.birthdate"
+										:key="index"
+									>
+										{{data}}
+									</span>
+								</div>
 							</div>
 						</div>
 
@@ -274,6 +384,17 @@
 									<option value="admin">Admin</option>
 									<option value="staff">staff</option>
 								</select>
+								<div
+									class="text-danger small mb-2"
+									v-if="errors.role"
+								>
+									<span
+										v-for="(data, index) in errors.role"
+										:key="index"
+									>
+										{{data}}
+									</span>
+								</div>
 							</div>
 						</div>
 
@@ -293,6 +414,17 @@
 									class="form-control" 
 									v-model="user.password"
 								>
+								<div
+									class="text-danger small mb-2"
+									v-if="errors.password"
+								>
+									<span
+										v-for="(data, index) in errors.password"
+										:key="index"
+									>
+										{{data}}
+									</span>
+								</div>
 							</div>
 						</div>
 
@@ -312,6 +444,17 @@
 									class="form-control" 
 									v-model="user.client_id"
 								>
+								<div
+									class="text-danger small mb-2"
+									v-if="errors.client_id"
+								>
+									<span
+										v-for="(data, index) in errors.client_id"
+										:key="index"
+									>
+										{{data}}
+									</span>
+								</div>
 							</div>
 						</div>
 
@@ -385,7 +528,7 @@
 					error: (e) => {
 						console.log(e.message)
 						this.formSubmitStatus = false
-						this.errors = e.message
+						this.errors = e.errors
 					}
 				})
 			}

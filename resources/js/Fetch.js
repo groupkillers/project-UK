@@ -1,3 +1,9 @@
+// import axios from 'axios'
+
+// const fetchAxios = async (data) => {
+
+// }
+
 const fetchData = async (data) =>  {
 	let header = {
 		method: data.method||'GET',

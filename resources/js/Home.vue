@@ -1,5 +1,10 @@
 <template>
-  <div>Home</div>
+  <div
+	@click="d[d.length] = 1"
+  >
+	awegae
+	<input type="text" name="" id="" v-for="i in d">
+  </div>
 </template>
 
 <script>
@@ -7,6 +12,7 @@
 		name: 'Home',
 		data () {
 			return {
+				d: [],
 				info: null
 			}
 		},
