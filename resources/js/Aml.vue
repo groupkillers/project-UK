@@ -100,14 +100,14 @@
 		},
 		created () {
 			fetchData({
-					url: '/aml',
-					success: (res) => {
-						this.Aml = res
-					},
-					error: (e) => {
-						console.log(e)
-					}
-				})
+				url: '/aml',
+				success: (res) => {
+					this.Aml = res
+				},
+				error: (e) => {
+					console.log(e)
+				}
+			})
 		},
 		method:{
 			modelOpen() {

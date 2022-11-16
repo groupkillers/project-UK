@@ -25,9 +25,8 @@ class AuthController extends Controller
             'addressline' => 'required',
             'city' => 'required',
             'state' => 'required',
-            'postal_code' => 'required',
-            'comments' => 'required',
-            'client_id' => 'required'
+            'client_id' => 'required',
+            'postal_code' => 'required'
         ]);
 
         $user = Register::create([
