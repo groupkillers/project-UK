@@ -1,10 +1,12 @@
 <template>
     <div>
-			<input type="file" @change="onFileSelected">
+			{{msg}}
+			<input type="file" @change="getFileContent">
     </div>
 </template>
 
 <script>
+import uploadFile from "./Fetch.js"
 export default {
 	name: 'FileUpload',
 	data () {
@@ -12,10 +14,20 @@ export default {
 			msg: 'welcome file upload'
 		}
 	},
-	method: {
-		onFileSelected (event) {
-			console.log(event)
-		}
+	methods: {
+		getFileContent (e) {
+			let file = e.target.files[0]
+			let date = {
+				file: file,
+				url: "http://127.0.0.1:8000/api/image-handel",
+				progress: (e) => {
+					console.log(e)
+				}
+			}
+			if(file) {
+				uploadFile.uploadFile(date);
+			}
+		},
 	}
 }
 </script>

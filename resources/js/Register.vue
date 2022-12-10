@@ -500,7 +500,6 @@
 
 <script>
 	import fetchData from "./Fetch.js"
-
 	export default {
 		name: 'Register',
 		data () {
@@ -514,7 +513,7 @@
 			userRegister() {
 				this.formSubmitStatus = true
 				this.errors = {}
-				fetchData({
+				fetchData.fetchData({
 					url: '/register-user',
 					method: 'POST',
 					body: this.user,

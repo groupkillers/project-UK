@@ -70,70 +70,14 @@
 			<div 
 				id="content"
 			>
-				<nav 
-					class="navbar navbar-expand-lg navbar-light bg-light"
-				>
-					<div 
-						class="container-fluid"
-					>
-						<div 
-							class="collapse navbar-collapse" 
-							id="navbarSupportedContent"
-						>
-							<ul 
-								class="nav navbar-nav ml-auto"
-							>
-								<li 
-									class="nav-item active"
-								>
-									<a 
-										class="nav-link" 
-										href="#"
-									>
-										<i 
-											class="fa-solid fa-gear"
-										></i>
-									</a>
-								</li>
-								<li 
-									class="nav-item"
-								>
-									<a 
-										class="nav-link" 
-										href="#"
-									>
-										Page
-									</a>
-								</li>
-								<li 
-									class="nav-item"
-								>
-									<a 
-										class="nav-link" 
-										href="#"
-									>
-										<i 
-											class="fa-sharp fa-solid fa-user"
-										></i>
-									</a>
-								</li>
-								<li 
-									class="nav-item"
-								>
-									<a 
-										class="nav-link" 
-										href="#"
-									>
-										Page
-									</a>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</nav>
-
+			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+				<div class="d-flex flex-row-reverse">
+					<div class="p-2">Flex item 1</div>
+					<div class="p-2">Flex item 2</div>
+					<div class="p-2">Flex item 3</div>
+				</div>
+			</nav>
 				<router-view></router-view>
-				
 			</div>
     </div>
 	</div>

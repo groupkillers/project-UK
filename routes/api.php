@@ -30,3 +30,5 @@ Route::post('aml',[AmlController::class,'createAml']); //Insert
 Route::put('aml/{id}',[AmlController::class,'updateAml']); //Update
 Route::delete('aml/{id}',[AmlController::class,'deleteAml']); //Delete
 Route::get('aml/{client_ID}',[AmlController::class,'searchAml']); //Search
+
+Route::post('/image-handel',[App\Http\Controllers\Auth\ImageHandelController::class,'fetchImage']); 

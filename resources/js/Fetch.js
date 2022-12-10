@@ -1,8 +1,10 @@
-// import axios from 'axios'
+import axios from 'axios'
 
-// const fetchAxios = async (data) => {
-
-// }
+const headers = {
+	headers: {
+	  'Accept': 'application/json',
+	}
+  }
 
 const fetchData = async (data) =>  {
 	let header = {
@@ -40,5 +42,29 @@ const fetchData = async (data) =>  {
 	}
 }
 
+async function uploadFile (data) {
+	let header = {...headers}
 
-export default fetchData
+	const formData = new FormData()
+  formData.append('file', data.file)
+	console.log(data.file)
+	try {
+	  let res = await axios({
+			method: 'POST',
+			url: data.url,
+			headers: header.headers,
+			data: formData,
+			onUploadProgress: (e) => {
+				data.progress(e)
+			}
+	  })
+	data.success
+	
+	} catch (e) {
+		return Promise.reject(e) 
+	}
+}
+
+  
+export default{uploadFile,fetchData} 
+

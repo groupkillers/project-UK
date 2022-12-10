@@ -2,8 +2,14 @@
   <div
 	@click="d[d.length] = 1"
   >
+	{{user}}
+	<br>
 	awegae
-	<input type="text" name="" id="" v-for="i in d">
+	<input 
+		type="text" 
+		id="" v-for="(i, d) in d"
+		v-model="user[d]"
+	>
   </div>
 </template>
 
@@ -13,11 +19,8 @@
 		data () {
 			return {
 				d: [],
-				info: null
+				user: []
 			}
 		},
-		
 	}
-	
-	
 </script>
