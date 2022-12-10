@@ -14,27 +14,25 @@ import Signup from './Register.vue'
 import Signin from './Signin.vue'
 import Home from './Home.vue'
 import Dashboard from './Dashboard.vue'
-import UserDeatils from './UserDetails.vue'
 import Aml from './Aml.vue'
 import Calander from './Calander.vue'
 import FileUpload from './FileUpload.vue'
+import CreateAml from './CreateAml.vue'
 
 const routes = [
   { path: '/', component: Home },
   { path: '/signup', component: Signup },
   { path: '/signin', component: Signin },
   { path: '/calander', component: Calander},
-  { path: '/file', component: FileUpload},
   {
     path: '/',
     component: Dashboard,
     children: [
-      { path: 'dashboard', component: UserDeatils },
-      { path: 'user', component: UserDeatils },
-      { path: 'aml', component: Aml }
+      { path: 'create-aml', component:CreateAml},
+      { path: 'aml', component: Aml },
+      { path: 'file', component: FileUpload},
     ]
   }
-  
 ]
 
 const router = createRouter({

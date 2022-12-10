@@ -99,7 +99,7 @@
 			ModalsContainer
 		},
 		created () {
-			fetchData({
+			fetchData.fetchData({
 				url: '/aml',
 				success: (res) => {
 					this.Aml = res
